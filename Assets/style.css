@@ -6,7 +6,7 @@
 :root {
     --hue-nuetral: 200;
     --hue-wrong: 0;
-    --hue-corrent: 145;
+    --hue-correct: 145;
 }
 
 body {
@@ -40,7 +40,7 @@ body.wrong {
 
 .answerBtnGrid {
     display:grid;
-    grid-template-columns: repear(2, auto);
+    grid-template-columns: repeat(2, auto);
     gap: 10px;
     margin: 20px 0;
 }
