@@ -13,11 +13,6 @@ body {
     --hue: var(--hue-nuetral);
     padding: 0;
     margin: 0;
-    display: flex;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
     background-color: hsl(var(--hue)), 100%, 20%;
 }
 
@@ -27,6 +22,10 @@ body.correct {
 
 body.wrong {
     --hue: var(--hue-wrong);
+}
+
+h1 {
+    text-align:center;
 }
 
 .container {
@@ -65,10 +64,10 @@ body.wrong {
 }
 
 .btn.wrong {
-    --bue: var(--hue-wrong);
+    --hue: var(--hue-wrong);
 }
 
-.start.btn, .next.btn {
+.startBtn, .nextBtn, .hiScoreBtn{
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
