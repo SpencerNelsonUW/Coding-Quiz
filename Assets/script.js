@@ -1,6 +1,6 @@
 const startButton = document.getElementById("startBtn")
 const nextButton = document.getElementById("nextBtn")
-const hiScoreButton = document.getElementById("hiScoreBtn")
+
 const questionContainer = document.getElementById("questionContainer")
 const questionsEl = document.getElementById("question")
 const answerButton = document.getElementById("answerBtn")
@@ -61,6 +61,7 @@ function selectAnswer(e) {
     nextButton.classList.remove("hide")
  } else {
     hiScoreButton.classList.remove("hide")
+    stopTimer()
  }
 }
 
@@ -78,29 +79,62 @@ function clearStatusClass(element) {
     element.classList.remove("wrong")
 }
 
+
+
+let intervalID;
+
 function setTimer(){
-    timeLeft = 120;
-    var intervalSelector = setInterval(function (){
-        timeLeft = timeLeft - 1;
-        timeRemaining.textContent = timeLeft;
-    },1000)  
-    
+    intervalID = setInterval(setTime, 1000);
 }
 
+function setTime(){
+    timeLeft = timeLeft - 1;
+    timeRemaining.textContent = timeLeft;
+    if (timeLeft < 1){
+        hiScores();
+        stopTimer();
+    }
+}
 
-
+function stopTimer(){
+    clearInterval(intervalID);
+    intervalID = null;
+}
 
 function removeSeconds(){
     timeLeft = timeLeft - 10;
 }
 
 
+//highscore buttons
+const hiScoreButton = document.getElementById("hiScoreBtn")
 hiScoreButton.addEventListener("click", hiScores);
+const scoreboardContainer = document.getElementById("scoreboardContainer")
+const currentGameScore = document.getElementById("currentGameScore")
 
 function hiScores(){
     questionContainer.classList.add("hide")
+    scoreboardContainer.classList.remove("hide")
+    hiScoreButton.classList.add("hide")
+    currentGameScore.textContent = timeLeft;
 }
 
+
+const restartButton = document.getElementById("restartBtn")
+restartButton.addEventListener("click", restartGame)
+function restartGame(){
+        location.reload()
+}
+
+//save hiscore button
+const saveButton = document.getElementById("saveScoreBtn")
+saveButton.addEventListener("click", saveToHighScores)
+function saveToHighScores(){
+
+}
+
+
+//storage for coding questions
 const questions = [
     {
         question:"what is 1+1?",

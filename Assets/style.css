@@ -67,7 +67,7 @@ h1 {
     --hue: var(--hue-wrong);
 }
 
-.startBtn, .nextBtn, .hiScoreBtn{
+.startBtn, .nextBtn, .hiScoreBtn, .saveBtn, .restartBtn{
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;

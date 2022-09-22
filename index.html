@@ -28,9 +28,31 @@
             <button id="startBtn" class="startBtn btn">Start</button>
             <button id="nextBtn" class="nextBtn btn hide">Next</button>
             <button id="hiScoreBtn" class="hiScoreBtn btn hide">HiScores</button>
-            
         </div>
+
+        <div id="scoreboardContainer" class="hide"> 
+            <div>
+                <ul id="scoreboard">
+                    <h1>scoreboard</h1>
+                    <p>no high scores yet</p>
+                </ul>
+            </div>
+            
+            <div class="myHiScore">
+                <p>Would you like to save your score to the scoreboard?</p>
+                <p>you got a score of</p>
+                <p id="currentGameScore"></p>
+                <label for="intials">Enter your Initials</label>
+                <input type="text" id="intials" minlength="2" maxlength="8">
+                <button id="saveScoreBtn" class="saveBtn btn">Save</button>
+                <button id="restartBtn" class="restartBtn btn">Restart</button>
+            </div>
+        </div>
+
+
     </div>
+
+        
 
     <script src="./Assets/script.js"></script>
 </body>
