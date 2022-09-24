@@ -173,17 +173,17 @@ function saveToHighScores(){
 //storage for coding questions
 const questions = [
     {
-        question:"what is 1+1?",
+        question:"Which built-in method sorts the elements of an array?",
         answers: [
-            {text: "2", correct: true},
-            {text:"22", correct: false} 
+            {text: "sort()", correct: true},
+            {text:"order()", correct: false} 
         ]
     },
     {
-        question:"what is 2+2",
+        question:"Which built-in method removes the last element from an array and returns that element?",
         answers: [
-            {text:"81", correct:false},
-            {text:"4", correct:true}
+            {text:"last()", correct:false},
+            {text:"pop()", correct:true}
         ]
     }   
 ]
