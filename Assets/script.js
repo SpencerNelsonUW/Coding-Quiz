@@ -49,21 +49,36 @@ function resetState() {
     }
 }
 
+//select answer and either show next or hiscore button depending on how many questions are left
 function selectAnswer(e) {
     const selectedButton = e.target
-    const correct = selectedButton.dataset.correct 
-
     //setStatusClass(document., correct)
     Array.from(answerButton.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
- }) 
-    if (currentQuestion.length > currentQuestionIndex + 1){
+    }) 
+    if(selectedButton.dataset.correct == "true"){
+        console.log("true")
+    } else {
+        console.log("false")
+        removeTime();
+    }
+    //check amount of questions left
+    testQuestionsLeft();
+}
+
+function removeTime(){
+    timeLeft = timeLeft - 10;
+}
+
+//show next question or go to highscores
+function testQuestionsLeft() {if (currentQuestion.length > currentQuestionIndex + 1){
     nextButton.classList.remove("hide")
  } else {
     hiScoreButton.classList.remove("hide")
     stopTimer()
  }
 }
+
 
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -80,7 +95,7 @@ function clearStatusClass(element) {
 }
 
 
-
+//timer interval 
 let intervalID;
 
 function setTimer(){
@@ -93,6 +108,7 @@ function setTime(){
     if (timeLeft < 1){
         hiScores();
         stopTimer();
+        nextButton.classList.add("hide")
     }
 }
 
@@ -101,9 +117,6 @@ function stopTimer(){
     intervalID = null;
 }
 
-function removeSeconds(){
-    timeLeft = timeLeft - 10;
-}
 
 
 //highscore buttons
@@ -129,10 +142,33 @@ function restartGame(){
 //save hiscore button
 const saveButton = document.getElementById("saveScoreBtn")
 saveButton.addEventListener("click", saveToHighScores)
+var myHighScore = document.querySelector("#myHiScore")
+var scoreboard = document.querySelector("#scoreboard")
+
 function saveToHighScores(){
+    var initials = document.querySelector("#intials").value
+    
+    var newScore = {
+        score: timeLeft,
+        initials: initials, 
+    }
 
+    var scoreBoardData = JSON.parse(localStorage.getItem("scoreBoardData")) || [];
+    scoreBoardData.push(newScore)
+    localStorage.setItem("scoreBoardData", JSON.stringify(scoreBoardData));
+    console.log("saved")
+
+    scoreBoardData.sort((a, b) => {  
+        return b.score - a.score;
+    });
+    
+    console.log(scoreBoardData)
+    for(var i=0; i < scoreBoardData.length; i++){
+    var createList = document.createElement("li");
+    createList.textContent = scoreBoardData[i].initials + " " + scoreBoardData[i].score;
+    scoreboard.appendChild(createList);
+    }
 }
-
 
 //storage for coding questions
 const questions = [
